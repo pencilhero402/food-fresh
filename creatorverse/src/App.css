@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Sono:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Sono:wght@200;300;400;500;600;700;800&display=swap');
+
+::after, ::before {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+::selection {
+  background-color: rgba(61, 105, 143, 0.25);
+}
+
+#root {
+    font-family: Poppins, Verdana, sans-serif;
+    border-width: 2px;
+    border-radius: 0.3rem;
+    background-color: black;
+    text-rendering: optimizelegibility;
+    line-height: 25.5px;
+}
+
+* {    
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    background-color: black;
+}
+
+.App {
+    width: 100%;
+}
+
+.header {
+    height: 600px;
+    background-image: url(https://creatorverse-production.up.railway.app/static/media/banner.de5659898d3bfc5eb8ea.jpg);
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid rgb(66, 74, 89);
+    text-align: center;
+    padding-top: 8em;
+}
+
+h1, h2, h3 {
+    text-transform: uppercase;
+    line-height: 1em;
+}
+
+h1 {
+    font-family: Sono;
+    color: white;
+    border-radius: 0.3rem;
+    font-size: 8vw;
+    margin-top: 0px;
+    margin-bottom: 51px;
+}
+
+.main {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+}
