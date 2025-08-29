@@ -195,8 +195,7 @@ class GameScene(SceneBase):
                 self.fruits.draw(screen) 
                 id += 1
 
-        self.fruits.draw(self.grid_surface)
-        self.grid_drawn = True
+        self.grid_drawn = Trute
 
     def Render(self, layers):
         if self.layers is None:
