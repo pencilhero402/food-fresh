@@ -13,7 +13,7 @@ function Register() {
             </div>
             <div className="text-center space-y-2">
                 <h1 className="font-mono text-3xl font-bold text-black">Recipes</h1>
-                <p>Login to Your Account</p>
+                <p>Create an Account</p>
             </div>
             <div className="rounded-lg border bg-gray-50 p-3 sm:p-4 shadow-sm w-full max-w-md">
                 <div className="font-mono text-gray-800">
