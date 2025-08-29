@@ -1,8 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { auth, signOut } from '../client/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import type { User}  from 'firebase/auth';
 import './Homepage.css'
 
 function Homepage() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []); 
+
   const [input, setInput] = useState<string>('');
   const ingredients = input.split(',').map(item => item.trim()).filter(item => item.length > 0);
 
@@ -15,12 +27,27 @@ function Homepage() {
     setInput(remaining.join(', '));
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.log("Logout failed: ", error);
+    }
+  };
+
   return (
     <main className="flex min-h-[100dvh] flex-col items-center justify-center bg-white p-4 overflow-hidden relative text-black">
       <div className="absolute top-4 right-4 z-10 text-black">
-        <Link to="/login">
-          <button className="bg-black-500 hover:bg-gray-800 text-white font-bold rounded border-none outline-none hover:outline-none hover:border-none">Login</button>
+        {/* Only show Login button if NOT logged in*/}
+        {!user ? ( 
+          <Link to="/login">
+          <button className="bg-black-500 hover:bg-gray-800 text-white font-bold rounded border-none outline-none hover:outline-none hover:border-none">
+            Login</button>
         </Link>
+        ): (
+          <button className="bg-black-500 hover:bg-gray-800 text-white font-bold rounded border-none outline-none hover:outline-none hover:border-none" onClick={handleLogout}>
+            Logout</button>
+        )}
       </div>
       <div className="w-full max-w-md space-y-8 text-black">
         <div className="text-center space-y-2 animate-fadeIn">
