@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import './Recipes.css'
 
 function Recipes () {
-    const [input, setInput] = useState('');
+    // const [input, setInput] = useState('');
     return (
         <div className="min-h-[100dvh] bg-white flex flex-col">
             <main className="flex-1 p-4 relative">
