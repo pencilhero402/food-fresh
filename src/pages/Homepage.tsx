@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { auth, signOut } from '../client/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import getRecipesIncludingIngredients from "../client/api/getRecipesIncludingIngredients";
 import type { User}  from 'firebase/auth';
 import './Homepage.css'
 
@@ -15,8 +16,20 @@ function Homepage() {
     return () => unsubscribe();
   }, []); 
 
+
   const [input, setInput] = useState<string>('');
+  const [recipes, setRecipes] = useState<any[]>([]);
   const ingredients = input.split(',').map(item => item.trim()).filter(item => item.length > 0);
+
+  const handleOnClick = async () => {
+    try {
+      const result = await getRecipesIncludingIngredients(ingredients);
+      setRecipes(result)
+      console.log(result)
+    } catch (error) {
+      console.error("Failed to fetch recipes:", error)
+    } 
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
@@ -66,11 +79,11 @@ function Homepage() {
               <div className="space-y-2">
                 <div className="rounded-lg bg-white border-gray-200 p-4 relative group">
                   <div className="flex items-start space-x-2">
-                    <div className="flex-shrink-0 pe-1">
+                    <div className="flex-shrink-0 pr-1">
                       <span className="text-gray-500 font-mono text-sm-font-bold">﹥</span>
                     </div>
                     <div className="flex-1 relative">
-                      <textarea className="w-full bg-transparent border-none outline-none font-mono text-gray-700 placeholder:opacity-60 resize-none min-h[24px] leadering-6" 
+                      <textarea className="w-full bg-transparent border-none outline-none font-mono text-gray-700 placeholder:opacity-60 resize-none min-h-[24px] leading-6" 
                       placeholder="Chicken, Brocolli" 
                       rows={1} 
                       autoFocus 
@@ -80,7 +93,10 @@ function Homepage() {
                       />
                     </div>
                     <div className="flex-shrink-0 flex items-start pt-1 animate-fadein">
-                      <button className="flex items-center justify-content justify-center w-8 h-8 text-white">
+                      <button 
+                      type="button"
+                      className="flex items-center justify-content justify-center w-8 h-8 text-white"
+                      onClick={handleOnClick}>
                         <p className="text-2xl">↩︎</p>
                       </button>
                     </div>

@@ -28,7 +28,9 @@ function Login() {
         <main className="flex min-h-[100dvh] flex-col items-center justify-center bg-white p-4 overflow-hidden relative text-black">
             <div className="w-full max-w-md space-y-8">
                 <Link to="/">
-                <button className="text-black flex items-center bg-white font-mono text-sm text-gray-700 hover:text-gray-900 absolute left-4 top-4">← Back to Homepage</button>
+                    <button className="text-black flex items-center bg-white font-mono text-sm text-gray-700 hover:text-gray-900 absolute left-4 top-4"
+                    >← Back to Homepage
+                    </button>
                 </Link>
             </div>
             <div className="text-center space-y-2">
@@ -45,18 +47,21 @@ function Login() {
                                     <span> Email Address </span>
                                 </label>
                                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 flex items-center space-x-2">
-                                        <input className="flex-1 bg-transparent outline-none font-mono text-sm text-gray-700 placeholder:text-gray-400" placeholder="joebiden@email.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                                        <input className="flex-1 bg-transparent outline-none font-mono text-sm text-gray-700 placeholder:text-gray-400" placeholder="joebiden@email.com" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required></input>
                                 </div>
                                 <label className="text-xs font-mono text-gray-600 flex items-center space-x-2">
                                     <span> Password </span>
                                 </label>
                                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 flex items-center space-x-2">
-                                        <input className="flex-1 bg-transparent outline-none font-mono text-sm text-gray-700 placeholder:text-gray-400" placeholder="······" type="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                                        <input className="flex-1 bg-transparent outline-none font-mono text-sm text-gray-700 placeholder:text-gray-400" placeholder="······" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required></input>
                                 </div>
                             </div>
                         </div>
+                        {error && (
+                            <p className="text-red-600 font-mono text-xs">{error}</p>
+                        )}
                         <div className="text-white flex flex-col justify-center w-full">
-                            <button>Login</button>
+                            <button type="submit">Login</button>
                             <div className="text-black flex w-full justify-center items-center text-xs">
                                 <p>Don't have an account?</p>
                                 <Link to="/register">
