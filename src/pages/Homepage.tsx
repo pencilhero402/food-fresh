@@ -18,13 +18,12 @@ function Homepage() {
 
 
   const [input, setInput] = useState<string>('');
-  const [recipes, setRecipes] = useState<any[]>([]);
+  //const [recipes, setRecipes] = useState<any[]>([]);
   const ingredients = input.split(',').map(item => item.trim()).filter(item => item.length > 0);
 
   const handleOnClick = async () => {
     try {
       const result = await getRecipesIncludingIngredients(ingredients);
-      setRecipes(result)
       console.log(result)
     } catch (error) {
       console.error("Failed to fetch recipes:", error)
